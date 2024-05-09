@@ -6,15 +6,26 @@ export const HeaderProfileContainer = styled.header`
   justify-content: space-between;
   align-content: center;
 
-
-
   h1 {
     ${mixins.fonts.titleL}
     color: ${({ theme }) => theme["base-title"]};
   }
   a {
     ${mixins.fonts.link}
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    background: transparent;
+    text-transform: uppercase;
+    border-bottom: 2px transparent ${({ theme }) => theme.blue};;
     color: ${({ theme }) => theme.blue};
+    
+    transition: border 0.2s;
+    
+    &:hover {
+      border-bottom: 2px solid ${({ theme }) => theme.blue};;
+    }
   }
 
 

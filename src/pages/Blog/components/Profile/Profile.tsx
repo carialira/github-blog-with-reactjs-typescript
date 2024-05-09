@@ -15,10 +15,9 @@ interface UserProps {
 }
 
 export function Profile() {
-  
   const [user, setUser] = useState<UserProps>();
   const screenSize = useScreenSize();
-  
+
   async function fetchUsers() {
     const response = await apiGitHub.get("users/carialira");
     const { name, followers, login, company, html_url, avatar_url, bio } =
@@ -45,28 +44,32 @@ export function Profile() {
       {screenSize.width <= 960 ? (
         <div>
           <img src={user?.imgUrl} alt="" />
-          <HeaderProfile name={user?.name} />
+          <HeaderProfile name={user?.name} url={user?.url} />
         </div>
       ) : (
         <img src={user?.imgUrl} alt="" />
       )}
 
       <ContentProfile>
-        {screenSize.width > 960 && <HeaderProfile name={user?.name} />}
+        {screenSize.width > 960 && (
+          <HeaderProfile name={user?.name} url={user?.url} />
+        )}
         <main>
           <p>{user?.description}</p>
         </main>
         <footer>
           <span>
-            <i className="fa-brands fa-github"></i>
+            <i className="fa-brands fa-github" />
             {user?.githubUsername}
           </span>
+          {user?.company && (
+            <span>
+              <i className="fa-solid fa-building" />
+              {user?.company}
+            </span>
+          )}
           <span>
-            <i className="fa-solid fa-building"></i>
-            {user?.company}
-          </span>
-          <span>
-            <i className="fa-solid fa-user-group"></i>
+            <i className="fa-solid fa-user-group" />
             {user?.followers} Followers
           </span>
         </footer>

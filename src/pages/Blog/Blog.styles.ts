@@ -11,8 +11,9 @@ export const ContainerBlog = styled.div`
   overflow-x: hidden;
   padding: 0 2rem;
 
-  position: absolute;
-  transform: translateY(-9%); 
+  /* position: absolute; */
+  /* transform: translateY(-13%);  */
+  margin-top: -8rem;
   
   @media (max-width: 465px) {
     padding: 0;

@@ -16,7 +16,7 @@ export const ContainerProfile = styled.div`
 
   background: ${({ theme }) => theme["base-profile"]};
   
-  margin-bottom: 8rem;
+  margin-bottom: 7.2rem;
   /* transform: translateY(-40%);  */
 
   @media (max-width: 960px) {
@@ -59,7 +59,7 @@ export const ContentProfile = styled.div`
     span {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
 
       i {
         color: ${(props) => props.theme["base-label"]};

@@ -17,12 +17,13 @@ export function Blog() {
   const [posts, setPosts] = useState<IPost[]>([] as IPost[]);
   // const [postsCounter, setPostsCounter] = useState(0);
   
-  async function fetchPosts() {
+  async function fetchPosts(query = "") {
     const {data} = await apiGitHub.get(
-      `search/issues?q=repo:${"carialira"}/Github-blog-issues`,{
+      `search/issues?q=${
+        query ? query : ""
+      }%20repo:${"carialira"}/github-blog-with-reactjs-typescript`,{
         headers: {
-          Authorization: "Bearer " + "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"
-          // Accept: "application/vnd.github.v3+json"
+          Accept: "application/vnd.github.v3+json"
         }
       }
     );
