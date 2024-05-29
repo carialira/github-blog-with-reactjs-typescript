@@ -11,11 +11,10 @@ export const ContainerBlog = styled.div`
   overflow-x: hidden;
   padding: 0 2rem;
 
-  /* position: absolute; */
-  /* transform: translateY(-13%);  */
+  position: absolute;
   margin-top: -8rem;
   
-  @media (max-width: 465px) {
+  @media (max-width: 29.0625em) {
     padding: 0;
   }
 
@@ -26,14 +25,14 @@ export const ContainerBlog = styled.div`
     gap: 3rem;
     max-width: 86.4rem;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 
-    @media (max-width: 905px) {
+    @media (max-width: 56.5625em) {
       align-items: center;
       justify-content: center;
     } 
     
-    @media (max-width: 426px) {
+    @media (max-width: 26.625em) {
       align-items: baseline;
       justify-content: baseline;
     }
@@ -66,7 +65,7 @@ export const ContainerBlog = styled.div`
         ${mixins.fonts.textM}
         
         border-radius: 6px;
-        border: 1px solid ${props => props.theme['base-border']};
+        border: 2px solid ${props => props.theme['base-border']};
         background: ${({ theme }) => theme["base-input"]};
         color: ${({ theme }) => theme["base-text"]};
         padding: 1.2rem 1.6rem;
@@ -74,9 +73,13 @@ export const ContainerBlog = styled.div`
         &::placeholder {
           color: ${props => props.theme['base-label']};
         }
+
+        &:focus{
+          border: 2px solid ${props => props.theme['blue']};
+        }
       }
 
-      @media (max-width: 426px) {
+      @media (max-width: 26.625em) {
         min-width: 98.5%;
       }
     }
@@ -87,7 +90,7 @@ export const ContainerBlog = styled.div`
       grid-template-columns: repeat(auto-fill, minmax(42rem, 1fr));
       gap: 2rem;
 
-      @media (max-width: 560px) {
+      @media (max-width: 35em) {
         align-content: center;
         grid-template-columns: 1fr;
       }

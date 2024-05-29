@@ -12,13 +12,15 @@ export const PostContainer = styled.div`
   padding: 0 2rem;
   margin-top: -7rem;
 
-  @media (max-width: 465px) {
+  position: absolute;
+
+  @media (max-width: 29.0625em) {
     padding: 0;
   }
 
 `
 
-export const PostDetailsContent = styled.div`
+export const PostDetails = styled.div`
   display: flex;
   max-width: 86.4rem;
   width: 100%;
@@ -26,7 +28,8 @@ export const PostDetailsContent = styled.div`
   overflow: hidden;
 
   div{
-    ${mixins.fonts.textS}
+    ${mixins.fonts.textM}
+    color: ${({theme})=> theme["base-text"]};
     padding: 0 3.2rem 4rem;
     overflow-x: auto;
     width: 100%;

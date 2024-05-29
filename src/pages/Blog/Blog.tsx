@@ -2,7 +2,8 @@ import { ContainerBlog } from "./Blog.styles";
 import { Profile } from "./components/Profile/Profile";
 import { PostCard } from "./components/PostCard/PostCard";
 import { apiGitHub } from "../../services/api";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
 
 
 export interface IPost {
@@ -15,8 +16,11 @@ export interface IPost {
 
 export function Blog() {
   const [posts, setPosts] = useState<IPost[]>([] as IPost[]);
-  // const [postsCounter, setPostsCounter] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('')
   
+  const MIN_QUERY_LENGTH = 3; 
+  const debounced = useDebounce(searchQuery.toLowerCase().trim(), 300)
+
   async function fetchPosts(query = "") {
     const {data} = await apiGitHub.get(
       `search/issues?q=${
@@ -27,14 +31,20 @@ export function Blog() {
         }
       }
     );
-    console.log(data,'data')
     setPosts(data.items);
-    // setPostsCounter(response.data.total_count);
   }
 
+  const shouldFetchPosts = useMemo(() => {
+    return debounced.length >= MIN_QUERY_LENGTH; 
+  }, [debounced, MIN_QUERY_LENGTH]);
+
   useEffect(() => {
-    fetchPosts();
-  }, []);
+    if (shouldFetchPosts) {
+      fetchPosts(debounced);
+    } else {
+      fetchPosts();
+    }
+  }, [shouldFetchPosts]);
 
   return (
     <ContainerBlog>
@@ -43,9 +53,9 @@ export function Blog() {
         <div className="search">
           <div className="header">
             <span>Publicações</span>
-            <small>6 publicações</small>
+            <small>{posts && posts.length ? `${posts.length} publicações` : 'Nenhum publicação'}</small>
           </div>
-          <input type="search" placeholder="Buscar conteúdo" />
+          <input type="search" placeholder="Buscar conteúdo"  onChange={(e) => setSearchQuery(e.target.value)}/>
         </div>
         <div className="section">
           {posts && posts.length > 0 && posts.map(post =>{

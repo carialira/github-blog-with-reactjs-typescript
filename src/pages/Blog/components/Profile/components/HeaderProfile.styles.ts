@@ -5,10 +5,12 @@ export const HeaderProfileContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-content: center;
+  overflow: hidden;
 
   h1 {
     ${mixins.fonts.titleL}
     color: ${({ theme }) => theme["base-title"]};
+    overflow: hidden;
   }
   a {
     ${mixins.fonts.link}
@@ -29,7 +31,7 @@ export const HeaderProfileContainer = styled.header`
   }
 
 
-  @media (max-width: 960px) {
+  @media (max-width: 60em) {
     display: flex;
     flex-direction: column;
     justify-content: center;

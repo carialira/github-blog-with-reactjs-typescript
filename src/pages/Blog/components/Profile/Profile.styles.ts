@@ -18,8 +18,9 @@ export const ContainerProfile = styled.div`
   
   margin-bottom: 7.2rem;
   /* transform: translateY(-40%);  */
+  overflow: hidden;
 
-  @media (max-width: 960px) {
+  @media (max-width: 60em) {
    flex-wrap: wrap;
    height: 100%;
 
@@ -33,6 +34,7 @@ export const ContainerProfile = styled.div`
   }
 
   img{
+    border-radius: 50%;
     max-height: 14.8rem;
     max-width: 14.8rem;
   }
@@ -45,6 +47,7 @@ export const ContentProfile = styled.div`
   gap: 2rem;
 
   main {
+    overflow: hidden;
     ${mixins.fonts.textM}
   }
 
